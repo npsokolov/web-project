@@ -1,0 +1,18 @@
+
+{% extends "pretty.html" %}
+{% block content %}
+<p>{{ message }}</p>
+    <h1>Авторизация</h1>
+    <form action="/login" method="POST">
+        <label for="name">Username:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <input type="submit" value="login">
+    </form>
+    <br>
+    <form action="/register">
+        <p>Нет аккаунта? Пройти регистрацию</p>
+        <input type="submit" value="Register">
+    </form>
+{% endblock %}

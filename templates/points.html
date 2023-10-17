@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Points</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Criteria</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for score in scores %}
+        <tr>
+          <td>{{ score[0] }}</td>
+            {% if score[1] == -1 %}
+                 <td>Не проверено</td>
+            {% endif %}
+            {% if score[1] == -2 %}
+                 <td>Не загружено</td>
+            {% endif %}
+            {% if score[1] != -1 and score[1] != -2 %}
+                 <td>{{ score[1] }}</td>
+            {% endif %}
+
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

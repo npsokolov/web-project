@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body>
+    <h1>Страница для ввода оценок</h1>
+    <form action="/admin_criteria_2_check" method="POST">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Список файлов</th>
+                <th>Оценки</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user_id, file_list in users %}
+                <tr>
+                    <td>{{ user_id }}</td>
+                    <td>
+                        {% for file in file_list %}
+                            <a href="{{ file }}" download>Посмотреть</a><br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for file in file_list %}
+                            <input type="number" name="{{ file }}" value="0"><br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <button type="submit" name="user_id" value="{{ user_id }}">Подтвердить</button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </form>
+</body>
+{% endblock %}

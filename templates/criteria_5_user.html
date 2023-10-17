@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+  <body>
+    <h2>Критерий 5: загрузка документов</h2>
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('criteria_5_user') }}">
+      <label for="speaker_event">Вы выступали на мероприятии в качестве спикера?</label>
+      <select id="speaker_event" name="speaker_event">
+        <option value="Нет">Нет</option>
+        <option value="Да">Да</option>
+      </select><br><br>
+      <label for="participated_this_year">Вы участвовали в мероприятии в этом году?</label>
+      <select id="participated_this_year" name="participated_this_year">
+        <option value="Нет">Нет</option>
+        <option value="Да">Да</option>
+      </select><br><br>
+      <div id="files" style="display: none;">
+        <label for="certificate_file">Загрузите сертификат</label>
+        <input type="file" id="certificate_file" name="certificate_file"><br><br>
+        <label for="program_file">Загрузите программу мероприятия</label>
+        <input type="file" id="program_file" name="program_file"><br><br>
+      </div>
+      <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+    {% if message %}
+      <p>{{ message }}</p>
+    {% endif %}
+    <script>
+      var speaker_event_select = document.getElementById("speaker_event");
+      var participated_this_year_select = document.getElementById("participated_this_year");
+      var files_div = document.getElementById("files");
+
+      speaker_event_select.addEventListener("change", checkFiles);
+      participated_this_year_select.addEventListener("change", checkFiles);
+
+      function checkFiles() {
+        if (speaker_event_select.value === "Да" && participated_this_year_select.value === "Да") {
+          files_div.style.display = "block";
+        } else {
+          files_div.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+{% endblock %}

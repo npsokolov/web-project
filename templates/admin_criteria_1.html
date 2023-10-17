@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Оценка по критерию 1</h1>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>User ID</th>
+        <th>Content</th>
+        <th>Score</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody id="posts-table-body">
+    {% for post in posts %}
+        <tr>
+            <td>{{ post[0] }}</td>
+            <td>{{ post[1]  }}</td>
+            <td><input type="number" name="score" data-userid="{{ post[0] }}" data-postid="{{ post.id }}" required></td>
+            <td>
+                <button class="submit-score"  data-userid="{{ post[0] }}" data-postid="{{ post.id }}">Подтвердить
+                </button>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+        $(".submit-score").on("click", function () {
+            var userId = $(this).data("userid");
+            var postId = $(this).data("postid");
+            var score = $("input[data-userid='" + userId + "'][data-postid='" + postId + "']").val();
+            $.ajax({
+                url: "/admin_criteria_1",
+                type: "POST",
+                data: {
+                    user_id: userId,
+                    post_id: postId,
+                    score: score
+                },
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (xhr) {
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

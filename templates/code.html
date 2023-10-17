@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Code Form</title>
+  </head>
+  <body>
+    <h1>Code Form</h1>
+    <form method="post" action="{{ url_for('submit_code', role=role, name=name, password=password, company=company) }}">
+      <p>
+        <label for="role">Role:</label>
+        <input type="text" name="role" id="role" value="{{ request.args.get('role') }}" readonly>
+      </p>
+      <p>
+        <label for="code">Code:</label>
+        <input type="text" name="code" id="code" required>
+      </p>
+      <p>
+        <input type="submit" value="Submit">
+      </p>
+    </form>
+  </body>
+</html>

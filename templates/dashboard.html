@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Личный кабинет</h1>
+    <p>Привет <span class="badge bg-success"> {{ session['user_name'] }}</span>, ваш id: <span class="badge bg-primary">{{ session['user_id'] }}</span></p>
+  <ul>
+    <li><a href="{{ url_for('points') }}">Детализация баллов</a></li>
+    <li><a href="{{ url_for('criteria_5_user') }}">Загрузить данные по критерию 5</a></li>
+  <li><a href="{{ url_for('criteria_2_user') }}">Загрузить данные по критерию 2</a></li>
+  </ul>
+{% endblock %}

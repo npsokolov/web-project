@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Личный кабинет</h1>
+    <p>Привет, <span class="badge bg-success"> {{ session['user_name'] }}</span></p>
+  <ul>
+    <li><a href="{{ url_for('upload_test') }}">Выгрузка тестов</a></li>
+    <li><a href="{{ url_for('admin_criteria_1') }}">Оценка участников по критерию 1</a></li>
+    <li><a href="{{ url_for('admin_criteria_2') }}">Оценка участников по критерию 2</a></li>
+    <li><a href="{{ url_for('admin_criteria_3') }}">Оценка участников по критерию 3</a></li>
+  </ul>
+{% endblock %}

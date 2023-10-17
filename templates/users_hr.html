@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p class="h1">Список сотрудников <span class="badge bg-success">{{ hr_company }}</span></p>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td>
+                    {% if user[1] == hr_company %}
+                        <form action="{{ url_for('give_points') }}" method="post" onsubmit="return validateForm()" enctype="multipart/form-data">
+                            <input type="hidden" name="user_id" value="{{ user[2] }}">
+                            {% for criteria in criteria_list %}
+                                <label for="{{ user[2] }}_{{ criteria }}">{{ criteria }}</label>
+                                {% if criteria == 'Критерий 4' %}
+                                    <input type="number" name="{{ user[2] }}_{{ criteria }}_1">
+                                    <input type="number" name="{{ user[2] }}_{{ criteria }}_2">
+                                {% elif criteria == 'Критерий 3' %}
+                                    <input type="file" name="3" multiple>
+                                {% else %}
+                                    <input type="number" name="{{ user[2] }}_{{ criteria }}" min="0" max="10" required>
+                                {% endif %}
+                            {% endfor %}
+                            <button type="submit" class="btn btn-sm btn-outline-primary">Подтвердить информацию</button>
+                        </form>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <script>
+        function validateForm() {
+            var forms = document.forms;
+            for (var i = 0; i < forms.length; i++) {
+                var form = forms[i];
+                var input3 = form.querySelector('input[name="3"]');
+                var input4_1 = form.querySelector('input[name$="_Критерий 4_1"]');
+                var input4_2 = form.querySelector('input[name$="_Критерий 4_2"]');
+                if (input3 && input3.files.length === 4) {
+                    return true;
+                } else if (input4_1 && input4_1.value && input4_2 && input4_2.value) {
+                    return true;
+                }
+            }
+            alert('Необходимо заполнить оба поля критерия 4 или загрузить ровно 4 файла для критерия 3');
+            return false;
+        }
+    </script>
+
+{% endblock %}

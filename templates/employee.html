@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Employee Panel</title>
+  </head>
+  <body>
+    <h1>Employee Panel</h1>
+    <h2>Ranking</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Total Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for index, ranked_employee in enumerate(ranked_employees) %}
+        <tr>
+          <td>{{ index + 1 }}</td>
+          <td>{{ ranked_employee.name }}</td>
+          <td>{{ ranked_employee.criterion1 + ranked_employee.criterion2 + ranked_employee.criterion3 + ranked_employee.criterion4 + ranked_employee.criterion5 }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <h2>Details</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Criterion 1</th>
+          <th>Criterion 2</th>
+          <th>Criterion 3</th>
+          <th>Criterion 4</th>
+          <th>Criterion 5</th>
+          <th>Total Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.criterion1 }}</td>
+          <td>{{ employee.criterion2 }}</td>
+          <td>{{ employee.criterion3 }}</td>
+          <td>{{ employee.criterion4 }}</td>
+          <td>{{ employee.criterion5 }}</td>
+          <td>{{ total_score }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

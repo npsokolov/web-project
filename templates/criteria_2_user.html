@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <body>
+    <h1>Загрузка файлов по критерию 2</h1>
+    <form method="POST" action="{{ url_for('criteria_2_user') }}" enctype="multipart/form-data">
+		<label for="file1">Выберите первый файл:</label>
+		<input type="file" id="file1" name="file1" onchange="enableSubmit()">
+		<br>
+		<label for="file2">Выберите второй файл:</label>
+		<input type="file" id="file2" name="file2" onchange="enableSubmit()">
+		<br>
+        <button type="submit" class="btn btn-primary" id="submit-btn" disabled>Отправить</button>
+	</form>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+    </body>
+    <script>
+		function enableSubmit() {
+			if (document.getElementById('file1').value && document.getElementById('file2').value) {
+				document.getElementById('submit-btn').removeAttribute('disabled');
+			} else {
+				document.getElementById('submit-btn').setAttribute('disabled', 'disabled');
+			}
+		}
+	</script>
+{% endblock %}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    {% endblock %}
+</head>
+<body>
+
+
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <span class="fs-5">  Корпоротивная академия Росатома</span>
+      </a>
+
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link active" aria-current="page">Выйти</a></li>
+        <li class="nav-item"><a href="{{ url_for('dashboard') }}" class="nav-link">Личный кабинет</a></li>
+        <li class="nav-item"><a href="{{ url_for('users') }}" class="nav-link">Рейтинг</a></li>
+      </ul>
+    </header>
+
+{#    <nav>#}
+{#        <ul>#}
+{#            <li><a href="{{ url_for('home') }}">Home</a></li>#}
+{#            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>#}
+{#            <li><a href="{{ url_for('users') }}">Users</a></li>#}
+{##}
+{#        </ul>#}
+{#    </nav>#}
+    {% block content %}{% endblock %}
+    {% block scripts %}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% endblock %}
+</body>
+</html>

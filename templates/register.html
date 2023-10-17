@@ -1,0 +1,35 @@
+{% extends "pretty.html" %}
+{% block content %}
+    <h1> Регистрация </h1>
+<form method="post" action="{{ url_for('register', role=role, name=name, password=password, company=company) }}">
+    <p>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required>
+    </p>
+    <p>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required>
+    </p>
+    <p>
+        <label for="role">Role:</label>
+        <select name="role" id="role" required>
+            <option value="Работник">Работник</option>
+            <option value="HR">HR</option>
+            <option value="admin">admin</option>
+        </select>
+    </p>
+    <p id="code" style="display:none">
+        <label for="code">Code:</label>
+        <input type="text" name="code" id="code">
+    </p>
+
+    <p>
+        <label for="company">Company:</label>
+        <input type="text" name="company" id="company">
+    </p>
+    <p>
+        <input type="submit" value="Register">
+    </p>
+</form>
+{% endblock %}
+

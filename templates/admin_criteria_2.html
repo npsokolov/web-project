@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Оценка критерия 2</h1>
+  <ul>
+    <li><a href="{{ url_for('admin_criteria_2_test') }}">Оценка тестов участников</a></li>
+    <li><a href="{{ url_for('admin_criteria_2_check') }}">Оценка присланых работ</a></li>
+  </ul>
+{% endblock %}
